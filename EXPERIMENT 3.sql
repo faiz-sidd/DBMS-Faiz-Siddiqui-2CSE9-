@@ -1,39 +1,52 @@
-Employees & jobs in Dept 30, ordered by salary (DESC)
-📌 ORDER BY sal DESC → highest salary first
+1--LIST ALL EMPLOYEES AND JOBS IN DEPARTMENT 30 IN DESCENDING ORDER BY SALARY.
+  
+      SELECT ename, job, sal FROM employee
+ WHERE deptno = 30 ORDER BY sal DESC;
 
-SELECT ename, job, sal FROM employee
-WHERE deptno = 30 ORDER BY sal DESC;
-2. Job & DeptNo of employees
-Name = 5 letters, starts with A and ends with N
+ 2-- LIST JOB AND DEPARTMENT NUMBER OF EMPLOYEES WHOSE NAME ARE FIVE LETTER LONG BEGIN WITH "A" AMD END WITH "N".
+    
+  SELECT job, deptno FROM employee
+        WHERE ename LIKE 'A___N';
 
-_ → exactly one character
 
-SELECT job, deptno FROM employee
-WHERE ename LIKE 'A___N';
-3. Names of employees starting with S
-SELECT ename FROM employee
-WHERE ename LIKE 'S%';
-4. Names of employees ending with S
-SELECT ename FROM employee
-WHERE ename LIKE '%S';
-5. Employees working in Dept 10 / 20 / 40
-OR working as Clerk / Salesman / Analyst
+3-- DISPLAY THE NAME OF EMPLOYEES WHOSE NAME START WITH ALPHABET "S".
+  
+        SELECT ename FROM employee
+    WHERE ename LIKE 'S%';
 
-SELECT ename FROM employee
+
+4-- DISPLAY THE NAME OF EMPLOYEES WHISE NAME IS ENDS WITH "S".
+  
+  SELECT ename FROM employee
+          WHERE ename LIKE '%S';
+
+5-- DISPLAY THE NAME OF EMPLOYEES WORKING IN DEPARTMENT NUMBER 10 OR 20 OR 40 OR EMPLOYEES WORKING AS CLERL ,SALESMAN ,ANALYST.
+
+   SELECT ename FROM employee
 WHERE deptno IN (10,20,40) OR job IN ('CLERK','SALESMAN','ANALYST');
-6. Employee number & name of employees who earn commission
-SELECT empno, ename FROM employee
-WHERE comm IS NOT NULL AND comm > 0; --IS NOT NULL → commission exists
-7. Employee number & total salary for each employee
-(Salary + Commission)
 
-SELECT empno, (sal + IFNULL(comm,0)) AS total_salary
-FROM employee; -- IFNULL(comm,0) avoids NULL issue
-8. Employee number & annual salary
-SELECT empno, sal*12 AS annual_salary FROM employee;
-9. Employees who are clerks earning > 3000
-SELECT ename FROM employee
-WHERE job = 'CLERK' AND sal > 3000;
-10. Employees who are clerk / salesman / analyst and earning > 3000
-SELECT ename FROM employee
-WHERE job IN ('CLERK','SALESMAN','ANALYST') AND sal > 3000
+6-- DISPLAY EMPLOYEES NUMBER AND NAMES FOR EMPLOYEES WHO EARN COMMISSION.
+  
+   SELECT empno, ename FROM employee
+          WHERE comm IS NOT NULL AND comm > 0; 
+
+7-- DISPLAY EMOPLOYEES NUMBER AND TOTAL SALARY FOPR EACH EMPLOYEE.
+  
+
+       SELECT empno, (sal + IFNULL(comm,0)) AS total_salary
+  FROM employee; 
+
+8-- DISPLAY EMPLOYEES NUMBER AND ANNUAL SALARY FOR EACH EMPLOYEE...
+  
+SELECT empno, sal*12 AS annual_salary 
+  FROM employee;
+
+9-- DISPLAY THE NAME OF ALL EMPLOYEES  WORKING AS CLERK AND DRAWING A SALARY MORE THAN 3000.
+  
+      SELECT ename FROM employee
+ WHERE job = 'CLERK' AND sal > 3000;
+
+10-- DISPLAY THE NAMES  OF EMPLOYEES WHO ARE WORKI NG AS CLERK ,SALESMAN ,ANALYST AND DRAWING A SALARY MORE THAN 3000.
+  
+     SELECT ename FROM employee
+   WHERE job IN ('CLERK','SALESMAN','ANALYST') AND sal > 3000
